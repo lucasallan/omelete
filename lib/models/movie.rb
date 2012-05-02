@@ -1,8 +1,9 @@
 class Movie
 
-  attr_accessor :id, :name, :status, :runtime, :cast, :genre, :directed_by, :release_date, :age_rating, :kind, :synopsis, :image
-
-  def initialize(id, name, status, runtime, cast, genre, directed_by, release_date, age_rating, kind, synopsis, image)
+  attr_accessor :id, :name, :status, :runtime, :cast, :genre, :directed_by, :release_date
+  attr_accessor :age_rating, :kind, :synopsis, :image, :movie_theaters
+  
+  def initialize(id, name, status, runtime, cast, genre, directed_by, release_date, age_rating, kind, synopsis, image, movie_theaters=[])
     @id = id
     @name = name
     @status = status
@@ -15,5 +16,6 @@ class Movie
     @kind = kind			
 		@synopsis = synopsis
 		@image = image
+		@movie_theaters = movie_theaters
   end
 end
