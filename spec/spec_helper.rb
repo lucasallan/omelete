@@ -3,7 +3,6 @@ $:.unshift File.expand_path('../../lib', __FILE__)
 $:.unshift File.expand_path('../../lib/omelete', __FILE__)
 
 require 'rspec'
-require 'omelete'
 require 'vcr'
 require 'omelete'
 require 'main_page'
