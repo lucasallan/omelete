@@ -1,22 +1,22 @@
 # encoding: utf-8 
 require 'spec_helper'
 
-describe MainPage do
+describe Omelete::MainPage do
   
-  class ClientTest 
-    include MainPage
+  class MainPageTest
+    include Omelete
   end
-
+  
   before(:each) do
-    @page ||= Nokogiri::HTML(File.read("spec/fixtures/movies.html"))
-    mock_uri = URI.parse(URI.encode("http://www.google.com/movies?near=Joao%20Pessoa".strip))
-    ClientTest.any_instance.should_receive(:page_doc).with(mock_uri).and_return(@page)
+    # @page ||= Nokogiri::HTML(File.read("spec/fixtures/movies.html"))
+    # mock_uri = URI.parse(URI.encode("http://omelete.uol.com.br/filmes-em-cartaz".strip))
+    # ClientTest.any_instance.should_receive(:city,:state).with("SP", "São Paulo").and_return(@page)
   end
+  
+  subject { @client = Omelete::MainPage.new("SP", "São Paulo") }
 
-	subject { @client = ClientTest.new }
-
-  it "should return one movie theater" do
-    subject.movies_theaters("http://www.google.com/movies?near=Joao%20Pessoa").size.should == 1
+  it "should return one movie" do
+    subject.movies.size.should == 1
   end
   
 end

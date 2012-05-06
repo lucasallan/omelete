@@ -5,16 +5,16 @@ require 'open-uri'
 
 module Omelete
   
-  class Client        
+  class Client
     
     def initialize(state,city)
       @state=state
       @city=city      
-      @http_client = Omelete::MainPage.new(state,city)
+      @main_page = MainPage.new(state,city)
     end
     
     def movies
-      @http_client.movies
+      @main_page.movies
     end
     
   end

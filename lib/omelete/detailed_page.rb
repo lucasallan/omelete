@@ -82,7 +82,7 @@ module Omelete
     end
   
     def self.obs
-      @page.search('//td[@colspan = "3"]').first.content
+      @page.search('//td[@colspan = "3"]').first.content if @page.search('//td[@colspan = "3"]').first
     end
   
   end

@@ -12,13 +12,13 @@ require 'detailed_page'
 module Omelete
   class MainPage
     URL = "http://omelete.uol.com.br/filmes-em-cartaz"
-  
+
     def initialize(state,city)
       @state=state
       @city=city
       @agent = Mechanize.new {|agent| agent.user_agent_alias = 'Mac Safari'}
     end
-  
+
     def movies
       @movies = []
       @agent.get(URL + "?uf=#{@state}&cidade=#{@city}&filme=&filme_id=") do |page|
@@ -29,8 +29,9 @@ module Omelete
           end
         end
       end
+      @movies
     end
-  
+
     def create_movie_with(movie_doc,status,page)
       name = movie_doc.search('h2').first.search('a').first.content.strip    
       info = movie_doc.search('h4').first.content.strip.split('-')
@@ -40,14 +41,14 @@ module Omelete
       link = movie_doc.search('p').first.search('a').first.attr('href')
       id = id_from(link)
       image = movie_doc.search('div').first.search('a').first.attr('href').strip unless movie_doc.search('div').first.search('a').first.nil?
-    
+
       movie = Movie.new(id,name,status,runtime,nil,genre,nil,age_rating,nil,nil,image)
       complete_movie = DetailedPage.movie_poi(movie,link,page)
     end
-  
+
     def id_from(link)    
       link.match(/\d+/)[0]
     end
-  
+
   end
 end
