@@ -28,7 +28,7 @@ Or install it yourself as:
 
 ### Observation
 	
-	I pretend to cover with more specs when I have some time to do it. By now the spec coverage is very poor.
+Need to improve the spec coverage. Accepting contributions :)
 
 ## License
 
