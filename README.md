@@ -27,7 +27,8 @@ Or install it yourself as:
 	client.movies
 
 ### Observation
-	
+
+To know all the states and cities available, visit: http://omelete.uol.com.br/filmes-em-cartaz/
 Need to improve the spec coverage. Accepting contributions :)
 
 ## License
