@@ -1,6 +1,6 @@
 # Omelete
 
-Ruby web crawler to access omelete informations. 
+Ruby web crawler to access omelete informations.
 This gem returns some information about Brazilian's website Omelete's movies, like: runtime, cast, genre, the director, age_rating, synopsis, image, the movie_theaters, and showtimes.
 
 
@@ -20,11 +20,15 @@ Or install it yourself as:
 
 ## Usage
 
-		client = Omelete::MainPage.new("SP", "São Paulo")
+	client = Omelete::MainPage.new("SP", "São Paulo")
 
-### Getting Movies information.
+### Getting Movies information
 
-		client.movies
+	client.movies
+
+### Observation
+	
+	I pretend to cover with more specs when I have some time to do it. By now the spec coverage is very poor.
 
 ## License
 
