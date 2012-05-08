@@ -1,12 +1,12 @@
 # -*- encoding: utf-8 -*-
-require File.expand_path('../lib/omelete/version', __FILE__)
+require File.expand_path('../lib/version', __FILE__)
 
 Gem::Specification.new do |gem|
   gem.authors       = ["Mauricio Voto"]
   gem.email         = ["mauriciovoto@gmail.com"]
   gem.description   = %q{Ruby web crawler to access omelete informations}
   gem.summary       = %q{Ruby web crawler to access omelete informations}
-  gem.homepage      = ""
+  gem.homepage      = "http://github.com/mvoto/omelete"
 
   gem.files         = Dir['lib/**/*.rb']
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }

@@ -1,6 +1,7 @@
 # encoding: utf-8 
 require 'nokogiri'
 require 'open-uri'
+require File.expand_path('../omelete/main_page', __FILE__)
 
 
 module Omelete
