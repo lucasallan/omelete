@@ -11,11 +11,11 @@ require 'showtime'
 module Omelete
   class DetailedPage
 
-    def self.movie_poi(movie,link,page)    
+    def self.movie_poi(movie,link,page)
       @page = page.link_with(:href => link).click
       movie.movie_theaters = movie_theaters(movie) unless @page.search('//div[@class = "programacao_cinema"]').first.nil?
       movie.showtimes = showtimes(movie) unless @page.search('//div[@class = "programacao_cinema"]').first.nil?
-      movie.synopsis = synopsis(movie) unless @page.search("//div[@id = \"tab_#{movie.id}_sinopse\"]/blockquote").first.nil?    
+      movie.synopsis = synopsis(movie) unless @page.search("//div[@id = \"tab_#{movie.id}_sinopse\"]/blockquote").first.nil?
       unless @page.search("//div[@id = \"tab_#{movie.id}_ficha\"]/dl/dd").first.nil?
         movie.cast = cast(movie)
         movie.directed_by = directed_by(movie)
@@ -26,7 +26,7 @@ module Omelete
     def self.movie_theaters(movie)
       movie_theaters = []
       @page.search('//div[@class = "programacao_cinema"]/h2/a').each do |movie_theater|
-        movie_theaters << movie_theater.content      
+        movie_theaters << movie_theater.content if movie_theater
       end
       movie_theaters
     end
@@ -34,7 +34,7 @@ module Omelete
     def self.showtimes(movie)
       showtimes = []
       @page.search('//div[@class = "programacao_cinema"]/h2/a').each do |movie_theater|      
-        showtimes << ShowtimeAndTheater.create_showtime_with(@page,movie_theater.content,movie)
+        showtimes << ShowtimeAndTheater.create_showtime_with(@page,movie_theater.content,movie) if movie_theater
       end
       showtimes
     end

@@ -33,7 +33,7 @@ module Omelete
     end
 
     def create_movie_with(movie_doc,status,page)
-      name = movie_doc.search('h2').first.search('a').first.content.strip    
+      name = movie_doc.search('h2').first.search('a').first.content.strip
       info = movie_doc.search('h4').first.content.strip.split('-')
       genre = info[0]
       runtime = info[1]
@@ -46,7 +46,7 @@ module Omelete
       complete_movie = DetailedPage.movie_poi(movie,link,page)
     end
 
-    def id_from(link)    
+    def id_from(link)
       link.match(/\d+/)[0]
     end
 
