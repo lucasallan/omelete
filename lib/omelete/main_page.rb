@@ -22,12 +22,12 @@ module Omelete
     def movies
       @movies = []
       @agent.get(URL + "?uf=#{@state}&cidade=#{@city}&filme=&filme_id=") do |page|
-        page.search('//div[@style = "margin-right: 38%;"]/h2').each do |movie_status|
-          movie_status.search('//div[@class = "programacao_filme"]').each do |movie_doc|
-            status = movie_status.content.delete("\n").strip
-            @movies << create_movie_with(movie_doc,status,page)
+        # page.search('//div[@style = "margin-right: 38%;"]/h2').each do |movie_status|
+          page.search('//div[@class = "programacao_filme"]').each do |movie_doc|
+            # status = movie_doc.content.delete("\n").strip
+            @movies << create_movie_with(movie_doc,nil,page)
           end
-        end
+        # end
       end
       @movies
     end

@@ -1,4 +1,5 @@
 # encoding: utf-8 
+#!/usr/bin/env ruby
 require 'nokogiri'
 require 'open-uri'
 require File.expand_path('../omelete/main_page', __FILE__)
@@ -10,7 +11,7 @@ module Omelete
     
     def initialize(state,city)
       @state=state
-      @city=city      
+      @city=city
       @main_page = MainPage.new(state,city)
     end
     
