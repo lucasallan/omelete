@@ -8,7 +8,7 @@ require 'mechanize'
 require 'movie'
 require 'showtime'
 
-module Omelete
+module Omelete  
   class DetailedPage
     
     def initialize(page,link)

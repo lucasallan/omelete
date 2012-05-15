@@ -12,12 +12,12 @@ require 'detailed_page'
 module Omelete
   class MoviePage
     URL = "http://omelete.uol.com.br/filmes-em-cartaz"
-
     def initialize(state,city)
       @state = state
       @city = city
-      @agent = Mechanize.new {|agent| agent.user_agent_alias = 'Mac Safari'}
-      @agent.get(URL + "?uf=#{@state}&cidade=#{@city}"){ |page| @page = page }
+      @agent = Mechanize.new{|agent| agent.user_agent_alias = 'Mac Safari'}
+      url=URL + "?uf=#{@state}&cidade=#{@city}"
+      @agent.get(URI.escape(url)){ |page| @page = page }
     end
 
     def movies

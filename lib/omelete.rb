@@ -6,13 +6,12 @@ require File.expand_path('../omelete/movie_page', __FILE__)
 
 
 module Omelete
-  
   class Client
     
     def initialize(state,city)
       @state=state
       @city=city
-      @movie_page = MoviePage.new(state,city)
+      @movie_page = MoviePage.new(@state,@city)
     end
     
     def movies
