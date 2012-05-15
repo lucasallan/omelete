@@ -2,7 +2,7 @@
 module Omelete
   class Showtime
 
-    attr_accessor :time, :obs, :movie, :theater, :kind
+    attr_accessor :time, :obs, :movie, :theater, :kind, :movie_theater
 
     def initialize(time, obs, kind, movie, theater, movie_theater)
       @time = time

@@ -1,8 +1,8 @@
-# encoding: utf-8 
+# -*- encoding : utf-8 -*-
 #!/usr/bin/env ruby
 require 'nokogiri'
 require 'open-uri'
-require File.expand_path('../omelete/main_page', __FILE__)
+require File.expand_path('../omelete/movie_page', __FILE__)
 
 
 module Omelete
@@ -12,12 +12,12 @@ module Omelete
     def initialize(state,city)
       @state=state
       @city=city
-      @main_page = MainPage.new(state,city)
+      @movie_page = MoviePage.new(state,city)
     end
     
     def movies
-      @main_page.movies
+      @movie_page.movies if @movie_page
     end
-    
+
   end
 end

@@ -20,7 +20,7 @@ Or install it yourself as:
 
 ## Usage
 
-	client = Omelete::MainPage.new("SP", "São Paulo")
+	client = Omelete::MoviePage.new("SP", "São Paulo")
 
 ### Getting Movies information
 
