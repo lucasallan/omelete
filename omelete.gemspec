@@ -19,6 +19,6 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'mechanize'
   gem.add_development_dependency 'rspec', '~> 2.7'
   gem.add_development_dependency 'vcr'
-  gem.add_development_dependency 'webmock', '1.8.0'
+  gem.add_development_dependency 'webmock', '~> 1.8.0'
   gem.add_development_dependency 'rake'
 end
