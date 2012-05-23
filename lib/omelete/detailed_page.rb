@@ -52,30 +52,22 @@ module Omelete
   
     def showtimes(movie)
       showtimes = []
-      movie_theaters=[]
-      obs=[]
-      @page.search('//div[@class = "programacao_cinema"]').each do |movie_theater_doc|
-        movie_theater = movie_theater_doc.search('h2').first.search('a').first
-        movie_theaters << movie_theater.content
-      end
-      
-      @page.parser.xpath('//div[@class="programacao_horarios"]/table/tfoot/tr').each do |tfoot_tr_doc|        
-        obs << tfoot_tr_doc.content.strip.delete("\n")
-      end
-      
-      i = 0
-      mi = 0
-      @page.parser.xpath('//div[@class="programacao_horarios"]/table/tr').each do |tr_doc|
-        unless tr_doc.content.include?("Sala")
-          mi += 1 if i > 0 && i.even?
-          mt = movie_theaters.at(mi)
-          observ = obs.at(mi)
-          sat = ShowtimeAndTheater.new tr_doc
-          showtimes << sat.create_showtime_with(mt,movie,observ)
-          i += 1
+      mt = ""
+      obs = ""
+      @page.parser.xpath('//div[@id="content-left"]/div[@class="grid_8"]').children.each_with_index do |div_child|
+        if div_child.name == "div"
+          mt = div_child.search('h2').first.text.gsub("\n", "").strip if div_child.attribute("class").value == "programacao_cinema"          
+          if div_child.attribute("class").value == "programacao_horarios"
+            div_child.search('tr').each do |tr_doc|
+              unless tr_doc.content.include?("Sala")
+                obs = div_child.search('td[@colspan="3"]').first.content if div_child.search('td[@colspan="3"]').first
+                sat = ShowtimeAndTheater.new tr_doc
+                showtimes << sat.create_showtime_with(mt,movie,obs)
+              end
+            end
+          end
         end
       end
-      
       showtimes
     end
     
@@ -87,12 +79,15 @@ module Omelete
       @doc = doc
     end
     
-    def create_showtime_with(movie_theater,movie,observ)      
-      showtime = Showtime.new(nil,nil,nil,movie,nil,movie_theater)
-      showtime.time = time
-      showtime.theater = theater
-      showtime.kind = kind
-      showtime.obs = observ
+    def create_showtime_with(movie_theater,movie,observ)
+      unless @doc.search('td').first.next_element.nil?
+        showtime = Showtime.new(nil,nil,nil,movie,nil,movie_theater)
+        showtime.time = time
+        showtime.theater = theater
+        showtime.kind = kind
+        showtime.obs = observ
+        # p "#{showtime.movie_theater} - #{showtime.theater} - #{showtime.movie.name} - #{showtime.time} - #{showtime.obs}"
+      end
       showtime
     end
     
@@ -104,7 +99,7 @@ module Omelete
       @doc.search('td').first.next_element.content
     end
   
-    def theater
+    def theater      
       @doc.search('td').first.content
     end
   
