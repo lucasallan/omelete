@@ -54,8 +54,8 @@ module Omelete
       showtimes = []
       mt = ""
       obs = ""
-      @page.parser.xpath('//div[@id="content-left"]/div[@class="grid_8"]').children.each_with_index do |div_child|
-        if div_child.name == "div"
+      @page.parser.xpath('//div[@id="content-left"]/div[@class="grid_8"]').children.each_with_index do |div_child|        
+        if div_child.node_name == "div"
           mt = div_child.search('h2').first.text.gsub("\n", "").strip if div_child.attribute("class").value == "programacao_cinema"          
           if div_child.attribute("class").value == "programacao_horarios"
             div_child.search('tr').each do |tr_doc|
